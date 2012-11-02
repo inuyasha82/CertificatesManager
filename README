@@ -1,0 +1,24 @@
+Certificates Manager
+
+===== WARNING SOFTWARE IN DEVELOPMENT ===== 
+(maybe i'll never finish it :D) 
+
+A little client to manage certificates used for signing android application. 
+
+You can open a keystore and it shows you the keys defined into it. 
+
+===== Dependencies ====
+
+It is developed in java using SWT library for gui components
+
+==== Compile ====
+You need to have maven installed. You just need to type: 
+
+  mvn clean package
+  
+==== TODO ====
+  - Finish key management
+  - Create a dialog for password
+  - Store information about opened keys.
+  
+  
