@@ -13,10 +13,10 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 public class MenuItemListener extends SelectionAdapter {
@@ -74,10 +74,7 @@ public class MenuItemListener extends SelectionAdapter {
 				"Please enter Keyring password", "", null);
 		input.open();
 		KeyManager key = new KeyManager(result, input.getValue());		
-//		shell.pack();
-//		shell.open();
-		Label label = components.getAliasname();		
-		label.setText(label.getText());
+		
 		key.load();
 		List<KeyObject> list = (ArrayList<KeyObject>) key.getKeyList();
 		Iterator<KeyObject> keyIt = list.iterator();
@@ -85,7 +82,11 @@ public class MenuItemListener extends SelectionAdapter {
 			KeyObject entry = keyIt.next();
 			TableItem tableItem= new TableItem(components.getAliasTable(), SWT.NONE);
 			tableItem.setText(new String[] {entry.alias, entry.startDate.toString(), entry.endDate.toString(), entry.issuerName, entry.algorithm});			
+		}		
+		for (TableColumn tc : components.getAliasTable().getColumns()){
+		        tc.pack();
 		}
+		shell.pack();
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch ()) display.sleep ();
 		}

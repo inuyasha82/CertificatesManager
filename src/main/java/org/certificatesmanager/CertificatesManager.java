@@ -13,6 +13,7 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.layout.FillLayout;
 
 public class CertificatesManager {
 
@@ -58,7 +59,7 @@ public class CertificatesManager {
 		Components components = new Components(shlCertificatesmanager);
 		
 		MenuItemListener menuListener = new MenuItemListener(shlCertificatesmanager, components);
-		shlCertificatesmanager.setLayout(new FormLayout());
+		shlCertificatesmanager.setLayout(new FillLayout(SWT.HORIZONTAL));
 				
 		Menu menu = new Menu(shlCertificatesmanager, SWT.BAR);		
 		components.setMenu(menu);		
@@ -87,28 +88,8 @@ public class CertificatesManager {
 		MenuItem mntmAbout = new MenuItem(menu_2, SWT.NONE);
 		mntmAbout.setText("About");
 		
-		Label lblAliasName = new Label(shlCertificatesmanager, SWT.NONE);
-		FormData fd_lblAliasName = new FormData();
-		fd_lblAliasName.top = new FormAttachment(0, 3);
-		fd_lblAliasName.left = new FormAttachment(0, 3);
-		lblAliasName.setLayoutData(fd_lblAliasName);
-		lblAliasName.setText("Alias name: ");
-		
-		Label label = new Label(shlCertificatesmanager, SWT.NONE);
-		FormData fd_label = new FormData();
-		fd_label.top = new FormAttachment(0, 3);
-		fd_label.left = new FormAttachment(0, 70);
-		label.setLayoutData(fd_label);
-		components.setAliasname(label);
-		label.setText("___________");
-		
 		table = new Table(shlCertificatesmanager, SWT.BORDER | SWT.FULL_SELECTION | SWT.MULTI);
 		components.setAliasTable(table);
-		FormData fd_table = new FormData();
-		fd_table.bottom = new FormAttachment(lblAliasName, 216, SWT.BOTTOM);
-		fd_table.top = new FormAttachment(lblAliasName, 33);
-		fd_table.left = new FormAttachment(lblAliasName, 0, SWT.LEFT);
-		table.setLayoutData(fd_table);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 		

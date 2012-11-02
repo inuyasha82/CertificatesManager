@@ -9,8 +9,7 @@ public class Components {
 	
 	protected Shell shlCertificatesmanager;
 
-	private Menu menu;
-	private Label aliasname;
+	private Menu menu;	
 	private Table aliasTable;
 
 	public Table getAliasTable() {
@@ -19,14 +18,6 @@ public class Components {
 
 	public void setAliasTable(Table aliasTable) {
 		this.aliasTable = aliasTable;
-	}
-
-	public Label getAliasname() {
-		return aliasname;
-	}
-
-	public void setAliasname(Label aliasname) {
-		this.aliasname = aliasname;
 	}
 
 	public Menu getMenu() {

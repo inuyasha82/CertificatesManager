@@ -19,6 +19,4 @@ You need to have maven installed. You just need to type:
 ==== TODO ====
   - Finish key management
   - Create a dialog for password
-  - Store information about opened keys.
-  
-  
+  - Store information about opened keys.  
