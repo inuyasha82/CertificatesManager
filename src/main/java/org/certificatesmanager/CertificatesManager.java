@@ -26,11 +26,20 @@ public class CertificatesManager {
 	 */
 	public static void main(String[] args) {
 		try {
+			parseArgs(args); 
 			CertificatesManager window = new CertificatesManager();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static void parseArgs(String[] args) {
+		if(args[0].equals("-v")) {
+			System.out.println("Certificates Manager ver 1.0");
+			System.exit(0);
+		}
+		
 	}
 
 	/**
