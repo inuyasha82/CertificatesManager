@@ -16,6 +16,11 @@ You need to have maven installed. You just need to type:
 
   mvn clean package
   
+The final package is in target folder. 
+You can launch it with: 
+
+java -jar certificatesmanager-jar-with-dependencies.jar
+  
 ==== TODO ====
   - Finish key management
   - Create a dialog for password
