@@ -9,10 +9,14 @@ You can open a keystore and it shows you the keys defined into it.
 
 ===== Dependencies ====
 
-It is developed in java using SWT library for gui components
+It is developed in java using SWT library for gui components.
 
 ==== Compile ====
-You need to have maven installed. You just need to type: 
+You need to have maven installed. Get it from: 
+
+http://maven.apache.org/
+
+Once you installed it, move into project folder and type: 
 
   mvn clean package
   
@@ -25,3 +29,5 @@ java -jar certificatesmanager-jar-with-dependencies.jar
   - Finish key management
   - Create a dialog for password
   - Store information about opened keys.  
+  - Support for KeyStore entries with different passwords.
+  - Compilation script/launch script
