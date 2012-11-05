@@ -1,0 +1,1 @@
+Test classes resources will be placed here.
