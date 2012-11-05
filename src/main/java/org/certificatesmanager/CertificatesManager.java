@@ -35,9 +35,11 @@ public class CertificatesManager {
 	}
 
 	private static void parseArgs(String[] args) {
-		if(args[0].equals("-v")) {
-			System.out.println("Certificates Manager ver 1.0");
-			System.exit(0);
+		if(args.length>0){
+			if(args[0].equals("-v")) {
+				System.out.println("Certificates Manager ver 1.0");
+				System.exit(0);
+			}
 		}
 		
 	}

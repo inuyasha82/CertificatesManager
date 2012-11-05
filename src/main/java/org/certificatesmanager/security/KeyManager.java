@@ -43,7 +43,7 @@ public class KeyManager {
 		return keyList;
 	}
 	
-	public void load(){
+	public void load() throws Exception {
 		try {
 			FileInputStream is = new FileInputStream(keyPath);
 			KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -103,14 +103,19 @@ public class KeyManager {
 			e.printStackTrace();
 		} catch (KeyStoreException e) {
 			e.printStackTrace();
+			throw e;
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
+			throw e;
 		} catch (CertificateException e) {
 			e.printStackTrace();
+			throw e;
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw e;
 		} catch (UnrecoverableKeyException e) {
 			e.printStackTrace();
+			throw e;
 		}		       
 	}
 	

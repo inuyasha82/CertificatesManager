@@ -1,5 +1,6 @@
 package org.certificatesmanager.listeners;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -63,7 +64,7 @@ public class MenuItemListener extends SelectionAdapter {
 	    int rc = messageBox.open();
 	}
 	
-	private void showFileDialog(){
+	private void showFileDialog(){		
 		FileDialog dialog = new FileDialog(shell);
 		dialog.setText("Choose a certificate");
 		String platform = SWT.getPlatform();
@@ -74,23 +75,28 @@ public class MenuItemListener extends SelectionAdapter {
 				"Please enter Keyring password", "", null);
 		input.open();
 		KeyManager key = new KeyManager(result, input.getValue());		
-		
-		key.load();
-		List<KeyObject> list = (ArrayList<KeyObject>) key.getKeyList();
-		Iterator<KeyObject> keyIt = list.iterator();
-		while(keyIt.hasNext()){
-			KeyObject entry = keyIt.next();
-			TableItem tableItem= new TableItem(components.getAliasTable(), SWT.NONE);
-			tableItem.setText(new String[] {entry.alias, entry.startDate.toString(), entry.endDate.toString(), entry.issuerName, entry.algorithm});			
-		}		
-		for (TableColumn tc : components.getAliasTable().getColumns()){
-		        tc.pack();
+		try{
+			key.load();
+			List<KeyObject> list = (ArrayList<KeyObject>) key.getKeyList();
+			Iterator<KeyObject> keyIt = list.iterator();
+			while(keyIt.hasNext()){
+				KeyObject entry = keyIt.next();
+				TableItem tableItem= new TableItem(components.getAliasTable(), SWT.NONE);
+				tableItem.setText(new String[] {entry.alias, entry.startDate.toString(), entry.endDate.toString(), entry.issuerName, entry.algorithm});			
+			}		
+			for (TableColumn tc : components.getAliasTable().getColumns()){
+		       	tc.pack();
+			}
+			shell.pack();
+			while (!shell.isDisposed()) {
+				if (!display.readAndDispatch ()) display.sleep ();
+			}
+			display.dispose ();
+		} catch (Exception e){
+			MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR |SWT.OK);			
+		    messageBox.setMessage(e.getMessage());
+		    messageBox.open();
 		}
-		shell.pack();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch ()) display.sleep ();
-		}
-		display.dispose ();
 	}
 
 }
