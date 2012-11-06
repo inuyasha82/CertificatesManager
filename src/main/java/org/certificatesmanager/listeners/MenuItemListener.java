@@ -83,7 +83,7 @@ public class MenuItemListener extends SelectionAdapter {
 				KeyObject entry = keyIt.next();
 				TableItem tableItem= new TableItem(components.getAliasTable(), SWT.NONE);
 				tableItem.setText(new String[] {entry.alias, entry.startDate.toString(), entry.endDate.toString(), entry.issuerName, entry.algorithm});			
-			}		
+			}
 			for (TableColumn tc : components.getAliasTable().getColumns()){
 		       	tc.pack();
 			}
