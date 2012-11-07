@@ -1,11 +1,11 @@
 package org.certificatesmanager.listeners;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.certificatesmanager.Components;
+import org.certificatesmanager.guicomponents.PasswordDialog;
 import org.certificatesmanager.security.KeyManager;
 import org.certificatesmanager.security.KeyObject;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -71,10 +71,13 @@ public class MenuItemListener extends SelectionAdapter {
 		dialog.setFilterPath (platform.equals("win32") || platform.equals("wpf") ? "c:\\" : "/");
 		String result = dialog.open();
 		System.out.println ("RESULT=" +result);
-		InputDialog input =  new InputDialog(Display.getCurrent().getActiveShell(), "Please enter a password", 
-				"Please enter Keyring password", "", null);
-		input.open();
-		KeyManager key = new KeyManager(result, input.getValue());		
+		PasswordDialog pwdialog = new PasswordDialog(shell);
+	    pwdialog.open();
+	    
+		//InputDialog input =  new InputDialog(Display.getCurrent().getActiveShell(), "Please enter a password", 
+		//		"Please enter Keyring password", "", null);
+		//input.open();
+		KeyManager key = new KeyManager(result, pwdialog.getPassword());		
 		try{
 			key.load();
 			List<KeyObject> list = (ArrayList<KeyObject>) key.getKeyList();
