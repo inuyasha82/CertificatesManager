@@ -73,10 +73,6 @@ public class MenuItemListener extends SelectionAdapter {
 		System.out.println ("RESULT=" +result);
 		PasswordDialog pwdialog = new PasswordDialog(shell);
 	    pwdialog.open();
-	    
-		//InputDialog input =  new InputDialog(Display.getCurrent().getActiveShell(), "Please enter a password", 
-		//		"Please enter Keyring password", "", null);
-		//input.open();
 		KeyManager key = new KeyManager(result, pwdialog.getPassword());		
 		try{
 			key.load();
