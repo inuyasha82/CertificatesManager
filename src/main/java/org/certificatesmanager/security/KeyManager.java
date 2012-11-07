@@ -3,6 +3,7 @@ package org.certificatesmanager.security;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream.GetField;
 import java.security.Key;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -22,16 +23,22 @@ import javax.security.auth.x500.X500Principal;
 
 import org.certificatesmanager.utils.StringUtils;
 
+/**
+ * @author Ivan Gualandri
+ *
+ */
 public class KeyManager {
 	
 	private String keyPath;
 	private String password;
+	private int size;
 	
 	private List<KeyObject> keyList = new ArrayList<KeyObject>();
 
 	public KeyManager(String keyPath){
 		this.keyPath = keyPath;
 		this.password="";
+		size = -1;
 	}
 	
 	public KeyManager(String keyPath, String password){
@@ -39,14 +46,42 @@ public class KeyManager {
 		this.password=password;
 	}
 	
+	/**
+	 * @see #load()
+	 * @return The list of available keys.
+	 */
 	public List<KeyObject> getKeyList() {
 		return keyList;
 	}
 	
+	/**
+	 * @return Number of entries into keystore
+	 */
+	public int getKeystoreSize(){
+		if(size==-1){
+			try {
+				FileInputStream is = new FileInputStream(keyPath);
+				KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+				size = keystore.size();
+				is.close();
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}			
+		}
+		return this.size;
+	}
+	
+	
+	/**
+	 * Load all availables keys into a List. You can obtain the list with getKeyList() method.	  
+	 * @see #getKeyList()
+	 * @throws Exception
+	 */
 	public void load() throws Exception {
 		try {
 			FileInputStream is = new FileInputStream(keyPath);
 			KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+			
 			keystore.load(is, password.toCharArray());		
 			Enumeration<String> e = keystore.aliases();			
 		    for (; e.hasMoreElements(); ) {
