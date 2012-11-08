@@ -116,7 +116,6 @@ public class KeyManager {
 		                System.out.println("Not Before: " + xcert.getNotBefore());
 		                System.out.println("X500Issuer: " + principal.getName());
 		                System.out.println("Encoded Fingerprint: ");		                
-//		                System.out.println("" + )
 		                // Get public key
 		                PublicKey publicKey = cert.getPublicKey();
 		                getFingerPrint(publicKey.getEncoded());

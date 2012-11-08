@@ -10,6 +10,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+
+/**
+ * This class represent a Dialog box with only a password field and an Ok Button.
+ * @author Ivan Gualandri
+ *
+ */
 public class PasswordDialog extends Dialog {
 	
 	private Text passwordField;
