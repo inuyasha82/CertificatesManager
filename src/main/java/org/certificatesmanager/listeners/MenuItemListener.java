@@ -42,7 +42,6 @@ public class MenuItemListener extends SelectionAdapter {
 		String selectedItem = ((MenuItem) e.widget).getText();
 		switch(selectedItem){
 		case "Open Certificate":			
-			System.out.println("Open Certificate placeholder...");
 			showFileDialog();
 			break;
 		case "About":
@@ -71,6 +70,7 @@ public class MenuItemListener extends SelectionAdapter {
 		dialog.setFilterPath (platform.equals("win32") || platform.equals("wpf") ? "c:\\" : "/");
 		String result = dialog.open();
 		System.out.println ("RESULT=" +result);
+		if(result==null) return;
 		PasswordDialog pwdialog = new PasswordDialog(shell);
 	    pwdialog.open();
 		KeyManager key = new KeyManager(result, pwdialog.getPassword());		
