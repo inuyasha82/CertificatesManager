@@ -26,7 +26,8 @@ public class CertificatesManager {
 	 */
 	public static void main(String[] args) {
 		try {
-			parseArgs(args); 
+			parseArgs(args);
+			System.out.println("SWT Version: " + org.eclipse.swt.SWT.getVersion());
 			CertificatesManager window = new CertificatesManager();
 			window.open();
 		} catch (Exception e) {

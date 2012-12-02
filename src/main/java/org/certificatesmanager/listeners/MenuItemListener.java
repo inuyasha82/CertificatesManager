@@ -67,7 +67,11 @@ public class MenuItemListener extends SelectionAdapter {
 		FileDialog dialog = new FileDialog(shell);
 		dialog.setText("Choose a certificate");
 		String platform = SWT.getPlatform();
-		dialog.setFilterPath (platform.equals("win32") || platform.equals("wpf") ? "c:\\" : "/");
+		String homefolder = System.getProperty("user.home") + "/";
+		//dialog.setFilterPath (platform.equals("win32") || platform.equals("wpf") ? "c:\\" : "/");
+		System.out.println("HomeFolder: " + homefolder);
+		dialog.setFilterPath(homefolder+ "/.");
+		
 		String result = dialog.open();
 		System.out.println ("RESULT=" +result);
 		if(result==null) return;
@@ -81,7 +85,7 @@ public class MenuItemListener extends SelectionAdapter {
 			while(keyIt.hasNext()){
 				KeyObject entry = keyIt.next();
 				TableItem tableItem= new TableItem(components.getAliasTable(), SWT.NONE);
-				tableItem.setText(new String[] {entry.alias, entry.startDate.toString(), entry.endDate.toString(), entry.issuerName, entry.algorithm});			
+				tableItem.setText(new String[] {entry.alias, entry.startDate.toString(), entry.endDate.toString(), entry.issuerName, entry.algorithm});				
 			}
 			for (TableColumn tc : components.getAliasTable().getColumns()){
 		       	tc.pack();
