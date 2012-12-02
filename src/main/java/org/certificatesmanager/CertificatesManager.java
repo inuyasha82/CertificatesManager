@@ -1,6 +1,7 @@
 package org.certificatesmanager;
 
 import org.certificatesmanager.listeners.MenuItemListener;
+import org.certificatesmanager.listeners.TableItemListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Display;
@@ -104,6 +105,7 @@ public class CertificatesManager {
 		components.setAliasTable(table);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
+		table.addListener(SWT.Selection, new TableItemListener(components)); 
 		
 		TableColumn tblclmnAlias = new TableColumn(table, SWT.NONE);
 		tblclmnAlias.setWidth(100);
