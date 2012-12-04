@@ -105,7 +105,7 @@ public class CertificatesManager {
 		components.setAliasTable(table);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
-		table.addListener(SWT.Selection, new TableItemListener(components)); 
+		table.addListener(SWT.Selection, new TableItemListener(this.shlCertificatesmanager, components)); 
 		
 		TableColumn tblclmnAlias = new TableColumn(table, SWT.NONE);
 		tblclmnAlias.setWidth(100);
