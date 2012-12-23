@@ -4,11 +4,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Text;
 
 public class CertificateDetails {
 
 	protected Shell shlCertificateDetails;
 	private String[] keyData;
+	private Text text;
 
 	
 	public CertificateDetails(Shell shell, String[] data){
@@ -54,9 +56,18 @@ public class CertificateDetails {
 		
 		Label lblNewLabel = new Label(shlCertificateDetails, SWT.NONE);
 		lblNewLabel.setBounds(264, 69, 159, 15);
+		
+		Label lblIssueDate = new Label(shlCertificateDetails, SWT.NONE);
+		lblIssueDate.setBounds(24, 108, 65, 15);
+		lblIssueDate.setText("Issue date:");
+		
+		text = new Text(shlCertificateDetails, SWT.BORDER);
+		text.setEditable(false);
+		text.setBounds(259, 100, 175, 23);
 		if(keyData!=null){
 			label.setText(keyData[0]);
 			lblNewLabel.setText(keyData[1]);
+			text.setText(keyData[2]); 
 		}
 
 	}

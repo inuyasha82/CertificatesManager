@@ -26,12 +26,13 @@ public class TableItemListener implements Listener {
 		TableItem[] item = curTable.getSelection();
 		int numColumn = curTable.getColumnCount();
 		System.out.println(item.length);				
-		String[] dataArray = new String[2];
+		String[] dataArray = new String[numColumn];
 		for(int i=0; i<numColumn; i++){ 
 			System.out.print(item[0].getText(i) + " ");			
 		}
 		dataArray[0] = item[0].getText(0);
-		dataArray[1] = item[0].getText(1);
+		dataArray[1] = item[0].getText(3);
+		dataArray[2] = item[0].getText(2);
 		CertificateDetails detailsWindow = new CertificateDetails(shell, dataArray);
 		detailsWindow.open();		
 	}
